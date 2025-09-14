@@ -26,9 +26,8 @@ export default function SearchBar() {
     { name: "Chats", enabled: true, icon: MessageCircleMore },
   ]);
 
-  // Mock dataset
+
   const data = [
-    // 👤 People
     {
       id: 1,
       type: "person",
@@ -64,8 +63,6 @@ export default function SearchBar() {
       status: "Active 3h ago",
       img: "https://picsum.photos/40?5",
     },
-
-    // 📂 Files
     {
       id: 6,
       type: "file",
@@ -101,8 +98,6 @@ export default function SearchBar() {
       status: "Edited 2h ago",
       img: "https://picsum.photos/40?10",
     },
-
-    // 📁 Folders
     {
       id: 11,
       type: "folder",
@@ -138,8 +133,6 @@ export default function SearchBar() {
       status: "Added 10h ago",
       img: "https://picsum.photos/40?15",
     },
-
-    // 💬 Chats
     {
       id: 16,
       type: "chat",
@@ -176,7 +169,6 @@ export default function SearchBar() {
       img: "https://picsum.photos/40?20",
     },
 
-    // 📋 Lists
     {
       id: 21,
       type: "list",
@@ -213,8 +205,6 @@ export default function SearchBar() {
       img: "https://picsum.photos/40?25",
     },
   ];
-
-  // Get count for each tab
   const getCount = (tab) => {
     if (tab === "All") return data.length;
 
@@ -228,8 +218,6 @@ export default function SearchBar() {
 
     return data.filter((d) => d.type === typeMap[tab]).length;
   };
-
-  // Toggle settings
   const toggleTab = (tabName) => {
     setTabs((prev) =>
       prev.map((t) => (t.name === tabName ? { ...t, enabled: !t.enabled } : t))
@@ -240,7 +228,6 @@ export default function SearchBar() {
     }
   };
 
-  // Filter logic
   const filteredData = data.filter((item) => {
     const matchesQuery = item.name.toLowerCase().includes(query.toLowerCase());
     if (!matchesQuery) return false;
@@ -254,7 +241,6 @@ export default function SearchBar() {
     return item.type === activeTab.toLowerCase();
   });
 
-  // Close settings when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
